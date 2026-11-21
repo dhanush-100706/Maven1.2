@@ -1,0 +1,321 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>MarksGradeCalculator</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.example.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
+
+        1)Write a Java program to read marks in three subjects, calculate the average, and display the grade according to the following criteria: A (90 and above), B (75–89), C (50–74), and F (below 50). Create a Maven project and configure an Azure Pipeline to compile the application and generate the JAR file.
+
+
+        MarksGradeCalculator — Complete Practical Procedure
+        Step 1: Create the Maven Project in IntelliJ
+        Open IntelliJ IDEA.
+        Click File → New → Project.
+        Select Java.
+        Project Name: MarksGradeCalculator
+        Build System: Maven
+        JDK: 17
+        If only JDK 21 is installed, use 21 temporarily and switch to 17 when available.
+        Click Create.
+        Step 2: Create Main.java
+        Navigate to:
+        src → main → java → org.example
+        Create a Java class named:
+        Main.java
+        Paste the following code:
+
+        package org.example;
+
+        import java.util.Scanner;
+
+        public class Main {
+
+        public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter marks in Subject 1: ");
+        int mark1 = sc.nextInt();
+
+        System.out.print("Enter marks in Subject 2: ");
+        int mark2 = sc.nextInt();
+
+        System.out.print("Enter marks in Subject 3: ");
+        int mark3 = sc.nex tInt();
+
+        double average = (mark1 + mark2 + mark3) / 3.0;
+
+        System.out.println("Average Marks: " + average);
+
+        if (average >= 90) {
+        System.out.println("Grade: A");
+        }
+        else if (average >= 75) {
+        System.out.println("Grade: B");
+        }
+        else if (average >= 50) {
+        System.out.println("Grade: C");
+        }
+        else {
+        System.out.println("Grade: F");
+        }
+
+        sc.close();
+        }
+        }
+        Step 3: Create/Configure pom.xml
+        In the project root, open pom.xml and replace the contents with:
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+<modelVersion>4.0.0</modelVersion>
+
+<groupId>org.example</groupId>
+<artifactId>MarksGradeCalculator</artifactId>
+<version>1.0-SNAPSHOT</version>
+
+<properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+
+<build>
+    <plugins>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.13.0</version>
+            <configuration>
+                <source>17</source>
+                <target>17</target>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.4.2</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>org.example.Main</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+
+    </plugins>
+</build>
+
+</project>
+        Step 4: Run the Java Program
+        Open Main.java.
+        Click the green Run ▶ button beside main().
+        Enter the three marks.
+        Example:
+        Enter marks in Subject 1: 95
+        Enter marks in Subject 2: 90
+        Enter marks in Subject 3: 85
+        Average Marks: 90.0
+        Grade: A
+        Step 5: Build the JAR Using Maven
+        Open the IntelliJ Terminal in the project root.
+        Execute:
+        mvn clean package
+        Verify the generated JAR in:
+        target/MarksGradeCalculator-1.0-SNAPSHOT.jar
+        Run the JAR:
+        java -jar target/MarksGradeCalculator-1.0-SNAPSHOT.jar
+        Step 6: Create a GitHub Repository
+        Go to https://github.com/.
+        Sign in.
+        Click + → New repository.
+        Repository name:
+        MarksGradeCalculator
+
+        Select Public or Private.
+        Do not initialize with README.
+        Click Create repository.
+        Step 7: Push the Project to GitHub
+        Open IntelliJ Terminal in the project root (MarksGradeCalculator).
+        Execute the following commands one by one:
+        git init
+
+        git add .
+
+        git commit -m "Initial commit - Marks Grade Calculator"
+        Connect the GitHub repository:
+        git remote add origin https://github.com/YOUR_USERNAME/MarksGradeCalculator.git
+        Replace YOUR_USERNAME with your GitHub username.
+        git branch -M main
+
+        git push -u origin main
+        Verify that your project files are visible on GitHub.
+        Step 8: Create azure-pipelines.yml
+        In IntelliJ:
+        Right-click the project root MarksGradeCalculator.
+        Click New → File.
+        Create a file named:
+        azure-pipelines.yml
+
+        Ensure it is at the same level as pom.xml.
+        Paste the following code:
+
+        trigger:
+        - main
+
+        pool:
+        vmImage: 'ubuntu-latest'
+
+        steps:
+        - task: JavaToolInstaller@0
+        inputs:
+        versionSpec: '17'
+        jdkArchitectureOption: 'x64'
+        jdkSourceOption: 'PreInstalled'
+
+        - task: Maven@4
+        inputs:
+        mavenPomFile: 'pom.xml'
+        goals: 'clean package'
+        options: ''
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.17'
+        jdkArchitectureOption: 'x64'
+
+        - task: PublishBuildArtifacts@1
+        inputs:
+        PathtoPublish: 'target'
+        ArtifactName: 'Java-JAR'
+        publishLocation: 'Container'
+        Step 9: Push azure-pipelines.yml to GitHub
+        Open IntelliJ Terminal.
+        git add .
+
+        git commit -m "Add Azure pipeline configuration"
+
+        git push
+        Verify that azure-pipelines.yml is visible in your GitHub repository.
+        Step 10: Create Azure DevOps Pipeline
+        Go to https://dev.azure.com/.
+        Sign in.
+        Create an organization if required.
+        Click New Project.
+        Project name:
+        MarksGradeCalculator
+
+        Click Create.
+        Open Pipelines → Pipelines.
+        Click New Pipeline.
+        Select GitHub.
+        Authorize Azure DevOps to access GitHub.
+        Select your repository:
+        MarksGradeCalculator
+
+        Select Existing Azure Pipelines YAML file.
+        Select branch:
+        main
+        14. Select YAML file:
+        /azure-pipelines.yml
+
+        Click Continue.
+        Click Run.
+        Step 11: Verify the Pipeline
+        Wait until the pipeline finishes.
+        Verify that the following steps are successful:
+        GitHub repository checkout
+        Java 17 configuration
+        Maven clean package
+        Compilation
+        JAR generation
+        Artifact publishing
+        Step 12: Download the JAR Artifact
+        Open the successful pipeline run.
+        Go to Summary.
+        Locate Artifacts.
+        Click Java-JAR.
+        Download the artifact.
+        Verify that the JAR file exists.
+        Expected JAR:
+        MarksGradeCalculator-1.0-SNAPSHOT.jar
+        Step 13: Set JDK 17 in IntelliJ
+        If you are currently using JDK 21:
+        Go to File → Project Structure → Project.
+        Set Project SDK → JDK 17.
+        Set Language Level → 17.
+        Click Apply → OK.
+        Then:
+        Go to File → Settings.
+        Navigate to Build, Execution, Deployment → Build Tools → Maven → Runner.
+        Set JRE → JDK 17.
+        Click Apply → OK.
+        In pom.xml, ensure both are set to 17:
+<maven.compiler.source>17</maven.compiler.source>
+<maven.compiler.target>17</maven.compiler.target>
+        Final Project Structure
+        MarksGradeCalculator
+        │
+        ├── .idea
+        ├── .mvn
+        ├── src
+        │   ├── main
+        │   │   ├── java
+        │   │   │   └── org.example
+        │   │   │       └── Main.java
+        │   │   └── resources
+        │   ├── test
+        │   ├── .gitignore
+        ├── pom.xml
+        └── azure-pipelines.yml
+        Final execution order:
+        IntelliJ → Java Program → Maven pom.xml → Run → mvn clean package → GitHub Repository → Push → azure-pipelines.yml → Push → Azure Pipeline → Build → JAR Artifact
